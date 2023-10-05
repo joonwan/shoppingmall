@@ -17,7 +17,7 @@ public class Category {
     private Long id;
 
     private String name;
-    
+
     @ManyToMany
     @JoinTable(name = "category_item",
         joinColumns = @JoinColumn(name="category_id"),
@@ -25,10 +25,15 @@ public class Category {
     )
     private List<Item> items = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="parent_id")
     private Category parent;
 
     @OneToMany(mappedBy = "parent")
     private List<Category> children = new ArrayList<>();
+
+    public void addChildCategory(Category child){
+        children.add(child);
+        child.setParent(this);
+    }
 }
