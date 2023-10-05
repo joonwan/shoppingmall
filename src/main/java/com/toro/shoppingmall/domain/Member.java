@@ -10,8 +10,9 @@ import java.util.List;
 @Getter
 public class Member {
 
-    @Id @GeneratedValue
-    @Column(name="member_id")
+    @Id
+    @GeneratedValue
+    @Column(name = "member_id")
     private Long id;
 
     private String name;
@@ -25,7 +26,11 @@ public class Member {
     public Member() {
     }
 
-    public Member(String name, Address address){
+    public Member(String name) {
+        this.name = name;
+    }
+
+    public Member(String name, Address address) {
         this.name = name;
         this.address = address;
     }

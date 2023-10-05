@@ -1,8 +1,8 @@
 spring:
-  datasource:
-    url: jdbc:h2:tcp://localhost/~/shoppingmall
-    username: sa
-    password: sa
+#  datasource:
+#    url: jdbc:h2:mem:shoppingmall
+#    username: sa
+#    password: sa
 
   jpa:
     hibernate:

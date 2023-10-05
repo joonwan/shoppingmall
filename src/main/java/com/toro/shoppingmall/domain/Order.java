@@ -9,11 +9,12 @@ import java.util.List;
 
 @Entity
 @Getter
-@Table(name="orders")
+@Table(name = "orders")
 public class Order {
 
-    @Id @GeneratedValue
-    @Column(name="order_id")
+    @Id
+    @GeneratedValue
+    @Column(name = "order_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,7 +25,7 @@ public class Order {
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="delivery_id")
+    @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
     private LocalDateTime orderDateTime;
@@ -33,12 +34,12 @@ public class Order {
     private OrderStatus orderStatus;
 
 
-    public void addMember(Member member){
+    public void addMember(Member member) {
         this.member = member;
         member.getOrders().add(this);
     }
 
-    public void setDelivery(Delivery delivery){
+    public void setDelivery(Delivery delivery) {
         delivery.setOrder(this);
         this.delivery = delivery;
     }
