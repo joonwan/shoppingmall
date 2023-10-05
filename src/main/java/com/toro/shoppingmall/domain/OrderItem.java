@@ -1,5 +1,6 @@
 package com.toro.shoppingmall.domain;
 
+import com.toro.shoppingmall.domain.item.Item;
 import jakarta.persistence.*;
 import lombok.Getter;
 
