@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public class TestRepository {
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
 
     public Long save(TestEntity te){
