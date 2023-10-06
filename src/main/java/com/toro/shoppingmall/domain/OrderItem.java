@@ -3,9 +3,10 @@ package com.toro.shoppingmall.domain;
 import com.toro.shoppingmall.domain.item.Item;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Getter
+@Getter @Setter
 public class OrderItem {
 
     @Id @GeneratedValue
@@ -21,10 +22,26 @@ public class OrderItem {
     private Order order;
 
     private int orderPrice; // 주문 가격
-    private int count ; // 주문 수향
+    private int count ; // 주문 수량
 
-    public void addOrder(Order order){
-        this.order = order;
-        order.getOrderItems().add(this);
+    // 주문 아이템 생성
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count){
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+
+        item.removeStock(count);
+
+        return orderItem;
+    }
+
+    // 비지니스 로직
+    public void cancel() {
+        this.getItem().addStockQuantity(this.count);
+    }
+
+    public int getTotalPrice() {
+        return getOrderPrice()*getCount();
     }
 }
